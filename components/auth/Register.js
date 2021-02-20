@@ -20,6 +20,7 @@ export class Register extends Component {
         />
         <TextInput
           placeholder='password'
+          secureTextEntry={true}
           onChangeText={password => this.setState({ password })}
         />
         <TextInput
