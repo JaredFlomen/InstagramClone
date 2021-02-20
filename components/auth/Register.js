@@ -12,7 +12,22 @@ export class Register extends Component {
     };
   }
   render() {
-    return <div></div>;
+    return (
+      <View>
+        <TextInput
+          placeholder='name'
+          onChangeText={name => this.setState({ name })}
+        />
+        <TextInput
+          placeholder='password'
+          onChangeText={password => this.setState({ password })}
+        />
+        <TextInput
+          placeholder='email'
+          onChangeText={email => this.setState({ email })}
+        />
+      </View>
+    );
   }
 }
 
