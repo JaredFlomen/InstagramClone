@@ -10,7 +10,12 @@ export class Register extends Component {
       password: '',
       name: '',
     };
+
+    this.onSignUp = this.onSignUp.bind(this);
   }
+
+  onSignUp() {}
+
   render() {
     return (
       <View>
@@ -27,6 +32,7 @@ export class Register extends Component {
           placeholder='email'
           onChangeText={email => this.setState({ email })}
         />
+        <Button onPress={() => this.onSignUp()} title='Sign Up!' />
       </View>
     );
   }
