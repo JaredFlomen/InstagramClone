@@ -5,15 +5,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
+import {
+  FIREBASE_API_KEY,
+  FIREBASE_AUTHDOMAIN,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGEBUCKET,
+  FIREBASE_MESSAGING_ID,
+  FIREBASE_APP_ID,
+  FIREBASE_MEASUREMENT_ID,
+} from '@env';
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTHDOMAIN,
-  projectId: process.env.FIREBASE_PROJECTID,
-  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGINGID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENTID,
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTHDOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGEBUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_ID,
+  appId: FIREBASE_APP_ID,
+  measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
 if (firebase.apps.length === 0) {
