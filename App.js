@@ -15,6 +15,10 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENTID,
 };
 
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 const Stack = createStackNavigator();
 
 export default function App() {
