@@ -3,7 +3,8 @@ import React from 'react';
 import * as firebase from 'firebase';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Landing from './components/auth/Landing';
+import LandingScreen from './components/auth/Landing';
+import RegisterScreen from './components/auth/Register';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -27,9 +28,10 @@ export default function App() {
       <Stack.Navigator initialRouteName='Landing'>
         <Stack.Screen
           name='Landing'
-          component={Landing}
+          component={LandingScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name='Register' component={RegisterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
