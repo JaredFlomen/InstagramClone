@@ -34,13 +34,13 @@ export class Register extends Component {
           onChangeText={name => this.setState({ name })}
         />
         <TextInput
+          placeholder='email'
+          onChangeText={email => this.setState({ email })}
+        />
+        <TextInput
           placeholder='password'
           secureTextEntry={true}
           onChangeText={password => this.setState({ password })}
-        />
-        <TextInput
-          placeholder='email'
-          onChangeText={email => this.setState({ email })}
         />
         <Button onPress={() => this.onSignUp()} title='Sign Up!' />
       </View>
