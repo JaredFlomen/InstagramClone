@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { View, Text } from 'react-native';
 import * as firebase from 'firebase';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LandingScreen from './components/auth/Landing';
-import RegisterScreen from './components/auth/Register';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './redux/reducers';
 import thunk from 'redux-thunk';
+import LandingScreen from './components/auth/Landing';
+import RegisterScreen from './components/auth/Register';
 import {
   FIREBASE_API_KEY,
   FIREBASE_AUTHDOMAIN,
