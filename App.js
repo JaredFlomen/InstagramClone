@@ -6,6 +6,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './redux/reducers';
+import thunk from 'redux-thunk';
 import {
   FIREBASE_API_KEY,
   FIREBASE_AUTHDOMAIN,
@@ -25,6 +29,8 @@ const firebaseConfig = {
   appId: FIREBASE_APP_ID,
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
+
+const store = createStore(rootReducer, applyMiddleware);
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
