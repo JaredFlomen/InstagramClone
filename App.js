@@ -89,7 +89,7 @@ export class App extends Component {
       );
     }
     return (
-      <Provider>
+      <Provider store={store}>
         <MainScreen />;
       </Provider>
     );
