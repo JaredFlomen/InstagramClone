@@ -30,7 +30,7 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
-const store = createStore(rootReducer, applyMiddleware);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
