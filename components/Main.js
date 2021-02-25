@@ -20,7 +20,6 @@ export class Main extends Component {
     return (
       <Tab.Navigator>
         <Tab.Screen name='Feed' component={FeedScreen} />
-        <Tab.Screen name='Settings' component={SettingsScreen} />
       </Tab.Navigator>
     );
   }
