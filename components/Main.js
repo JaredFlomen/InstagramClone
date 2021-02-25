@@ -21,7 +21,15 @@ export class Main extends Component {
     // if (!currentUser) return <View></View>;
     return (
       <Tab.Navigator>
-        <Tab.Screen name='Feed' component={FeedScreen} />
+        <Tab.Screen
+          name='Feed'
+          component={FeedScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name='home' color={color} size={26} />
+            ),
+          }}
+        />
       </Tab.Navigator>
     );
   }
