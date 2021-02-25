@@ -10,7 +10,7 @@ export function fetchUser() {
       .get()
       .then(snapshot => {
         if (snapshot.exists) {
-          console.log(snapshot.data());
+          // console.log(snapshot.data());
           dispatch({ type: USER_STATE_CHANGE, currentUser: snapshot.data() });
         } else {
           console.log('Does not exist');

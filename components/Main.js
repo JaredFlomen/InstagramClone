@@ -10,6 +10,8 @@ export class Main extends Component {
   }
 
   render() {
+    const { currentUser } = this.props;
+    console.log(currentUser);
     return (
       <View style={{ flex: 1, justifyContent: 'center' }}>
         <Text>User is logged in</Text>
