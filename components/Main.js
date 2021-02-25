@@ -17,4 +17,5 @@ export class Main extends Component {
 
 const mapDispatchProps = dispatch =>
   bindActionCreators({ fetchUser }, dispatch);
-export default Main;
+
+export default connect(null, mapDispatchProps)(Main);
