@@ -7,10 +7,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { fetchUser } from '../redux/actions/index';
 import FeedScreen from './main/Feed';
-import AddScreen from './main/Add';
 import ProfileScreen from './main/Profile';
 
 const Tab = createBottomTabNavigator();
+
+const EmptyScreen = () => {
+  return null;
+};
 
 export class Main extends Component {
   componentDidMount() {
@@ -22,7 +25,7 @@ export class Main extends Component {
     // console.log(currentUser);
     // if (!currentUser) return <View></View>;
     return (
-      <Tab.Navigator>
+      <Tab.Navigator initialRouteName='Feed'>
         <Tab.Screen
           name='Feed'
           component={FeedScreen}
@@ -33,8 +36,14 @@ export class Main extends Component {
           }}
         />
         <Tab.Screen
-          name='Add'
-          component={AddScreen}
+          listeners={({ navigation }) => ({
+            tabPress: event => {
+              event.preventDefault();
+              navigation.navigate('Add');
+            },
+          })}
+          name='AddContainer'
+          component={EmptyScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name='plus-box' color={color} size={26} />
