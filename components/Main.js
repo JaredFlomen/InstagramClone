@@ -5,7 +5,10 @@ import { bindActionCreators } from 'redux';
 import { fetchUser } from '../redux/actions/index';
 
 export class Main extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center' }}>
