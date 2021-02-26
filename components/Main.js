@@ -21,9 +21,6 @@ export class Main extends Component {
   }
 
   render() {
-    // const { currentUser } = this.props;
-    // console.log(currentUser);
-    // if (!currentUser) return <View></View>;
     return (
       <Tab.Navigator initialRouteName='Feed' labeled={false}>
         <Tab.Screen
