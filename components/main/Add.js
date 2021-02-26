@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [camera, setCamera] = useState(null);
+  const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export default function App() {
   const takePicture = async () => {
     if (camera) {
       const data = await camera.takePictureAsync(null);
-      console.log(data.uri);
+      setImage(data.uri);
     }
   };
 
@@ -37,19 +38,18 @@ export default function App() {
           ref={ref => setCamera(ref)}
         />
       </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title='Flip Image'
-          onPress={() => {
-            setType(
-              type === Camera.Constants.Type.back
-                ? Camera.Constants.Type.front
-                : Camera.Constants.Type.back
-            );
-          }}
-        ></Button>
-        <Button title='Take a Picture' onPress={() => takePicture()} />
-      </View>
+      <Button
+        title='Flip Image'
+        onPress={() => {
+          setType(
+            type === Camera.Constants.Type.back
+              ? Camera.Constants.Type.front
+              : Camera.Constants.Type.back
+          );
+        }}
+      ></Button>
+      <Button title='Take a Picture' onPress={() => takePicture()} />
+      {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
     </View>
   );
 }
