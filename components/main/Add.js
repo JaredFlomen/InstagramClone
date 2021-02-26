@@ -22,7 +22,7 @@ export default function Add() {
 
   const takePicture = async () => {
     if (camera) {
-      const data = await Camera.takePictureAsync(null);
+      const data = await camera.takePictureAsync(null);
       setImage(data.uri);
     }
   };
@@ -49,7 +49,7 @@ export default function Add() {
     <View style={{ flex: 1 }}>
       <View style={styles.cameraContainer}>
         <Camera
-          style={style.fixedRatio}
+          style={styles.fixedRatio}
           type={type}
           ratio={'1:1'}
           ref={ref => setCamera(ref)}

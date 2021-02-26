@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+require('firebase/firestore');
 import { USER_STATE_CHANGE } from '../constants/index';
 
 export function fetchUser() {
