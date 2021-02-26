@@ -66,6 +66,10 @@ export default function Add() {
         }}
       ></Button>
       <Button title='Take a Picture' onPress={() => takePicture()} />
+      <Button
+        title='Choose an Image From Gallery'
+        onPress={() => pickImage()}
+      />
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
     </View>
   );
