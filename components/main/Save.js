@@ -20,8 +20,8 @@ export default function Save(props) {
     const taskProgress = snapshot => {
       console.log(`Transferred: ${snapshot.bytesTransferred}`);
     };
-    const taskCompleted = snapshot => {
-      snapshot.ref.getDownloadURL().then(snapshot => {
+    const taskCompleted = () => {
+      task.snapshot.ref.getDownloadURL().then(snapshot => {
         console.log(snapshot);
       });
     };
@@ -29,7 +29,7 @@ export default function Save(props) {
       console.log(snapshot);
     };
 
-    task.on('state_changed', taskProgress, taskCompleted, taskError);
+    task.on('state_changed', taskProgress, taskError, taskCompleted);
   };
 
   return (
