@@ -29,9 +29,9 @@ export class Register extends Component {
             name,
             email,
           });
-        console.log(result);
+        console.log('Signup result', result);
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log('Signup error', e));
   }
 
   render() {

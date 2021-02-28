@@ -5,11 +5,17 @@ import { connect } from 'react-redux';
 
 function Profile(props) {
   const { currentUser, posts } = props;
+  if (!currentUser || !posts)
+    return (
+      <View>
+        <Text>Profile Error!</Text>
+      </View>
+    );
   return (
     <View style={styles.container}>
       <View style={styles.containerInfo}>
-        <Text>{currentUser ? currentUser.name : 'Name Not Found'}</Text>
-        <Text>{currentUser ? currentUser.email : 'Email Not Found'}</Text>
+        <Text>{currentUser.name}</Text>
+        <Text>{currentUser.email}</Text>
       </View>
       <View style={styles.containerPost}>
         <FlatList
