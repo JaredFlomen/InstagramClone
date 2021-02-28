@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, FlatList } from 'react-native';
 
 import { connect } from 'react-redux';
 
-function Profile() {
+function Profile(props) {
+  const { currentUser, posts } = props;
   return (
     <View>
       <Text>Profile</Text>
