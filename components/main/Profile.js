@@ -8,8 +8,8 @@ function Profile(props) {
   return (
     <View style={styles.container}>
       <View style={styles.containerInfo}>
-        <Text>jared</Text>
-        <Text>jared</Text>
+        <Text>{currentUser ? currentUser.name : 'Name Not Found'}</Text>
+        <Text>{currentUser ? currentUser.email : 'Email Not Found'}</Text>
       </View>
       <View style={styles.containerPost}>
         <FlatList

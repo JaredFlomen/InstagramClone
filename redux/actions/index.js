@@ -29,7 +29,7 @@ export function fetchUserPosts() {
       .orderBy('creation', 'asc')
       .get()
       .then(snapshot => {
-        const posts = snapshot.docs.map(doc => {
+        let posts = snapshot.docs.map(doc => {
           const data = doc.data();
           const id = doc.id;
           return { id, ...data };
