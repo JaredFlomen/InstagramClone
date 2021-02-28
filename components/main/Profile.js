@@ -17,7 +17,9 @@ function Profile(props) {
           horizontal={false}
           data={posts}
           renderItem={({ item }) => (
-            <Image style={styles.image} source={{ uri: item.downloadURL }} />
+            <View style={styles.containerImage}>
+              <Image style={styles.image} source={{ uri: item.downloadURL }} />
+            </View>
           )}
         />
       </View>
@@ -46,5 +48,8 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     aspectRatio: 1 / 1,
+  },
+  containerImage: {
+    flex: 1 / 3,
   },
 });
