@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, Image, FlatList } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 
 import { connect } from 'react-redux';
 
 function Profile(props) {
   const { currentUser, posts } = props;
   return (
-    <View>
-      <Text>Profile</Text>
+    <View style={styles.container}>
+      <Text>{currentUser.name}</Text>
     </View>
   );
 }
@@ -18,3 +18,10 @@ const mapStateToProps = store => ({
 });
 
 export default connect(mapStateToProps, null)(Profile);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 40,
+  },
+});
