@@ -9,7 +9,7 @@ import {
 import firebase from 'firebase';
 require('firebase/firestore');
 
-export default function Search() {
+export default function Search(props) {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = search => {
