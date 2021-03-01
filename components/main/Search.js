@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import firebase from 'firebase';
 require('firebase/firestore');
 
@@ -24,12 +30,23 @@ export default function Search() {
 
   return (
     <View>
-      <TextInput onChangeText={search => fetchUsers(search)} />
+      <TextInput
+        placeholder='Type Here ...'
+        onChangeText={search => fetchUsers(search)}
+      />
       <FlatList
         numColumns={1}
         horizontal={false}
         data={users}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() =>
+              props.navigation.navigate('Profile', { uid: item.id })
+            }
+          >
+            <Text>{item.name}</Text>
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
