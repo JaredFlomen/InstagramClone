@@ -82,7 +82,7 @@ function Profile(props) {
         {props.route.params.uid !== firebase.auth().currentUser.uid ? (
           <View>
             {following ? (
-              <Button title='Following' onPress={() => onUnfollow()} />
+              <Button title='Unfollow' onPress={() => onUnfollow()} />
             ) : (
               <Button title='Follow' onPress={() => onFollow()} />
             )}
