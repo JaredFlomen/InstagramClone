@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 function Profile(props) {
   const [userPosts, setUserPosts] = useState([]);
   const [user, setUser] = useState(null);
-  const [follwoing, setFollowing] = useState(false);
+  const [following, setFollowing] = useState(false);
 
   useEffect(() => {
     const { currentUser, posts } = props;
@@ -44,7 +44,12 @@ function Profile(props) {
           setUserPosts(posts);
         });
     }
-  }, [props.route.params.uid]);
+    if (props.following.indexOf(props.route.params.uid) > -1) {
+      setFollowing(true);
+    } else {
+      setFollowing(false);
+    }
+  }, [props.route.params.uid, props.following]);
 
   const onFollow = () => {
     firebase
@@ -103,6 +108,7 @@ function Profile(props) {
 const mapStateToProps = store => ({
   currentUser: store.userState.currentUser,
   posts: store.userState.posts,
+  following: store.userState.following,
 });
 
 export default connect(mapStateToProps, null)(Profile);
