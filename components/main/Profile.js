@@ -49,7 +49,7 @@ function Profile(props) {
   const onFollow = () => {
     firebase
       .firestore()
-      .collection('Following')
+      .collection('following')
       .doc(firebase.auth().currentUser.uid)
       .collection('userFollowing')
       .doc(props.route.params.uid)
