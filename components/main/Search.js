@@ -18,12 +18,19 @@ export default function Search() {
           const id = doc.id;
           return { id, ...data };
         });
+        setUsers(users);
       });
   };
 
   return (
     <View>
-      <Text>Feed</Text>
+      <TextInput onChange={search => fetchUsers(search)} />
+      <FlatList
+        numColumns={1}
+        horizontal={false}
+        data={users}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
+      />
     </View>
   );
 }
