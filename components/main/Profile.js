@@ -56,6 +56,16 @@ function Profile(props) {
       .set({});
   };
 
+  const onUnfollow = () => {
+    firebase
+      .firestore()
+      .collection('Following')
+      .doc(firebase.auth().currentUser.uid)
+      .collection('userFollowing')
+      .doc(props.route.params.uid)
+      .delete({});
+  };
+
   if (!user) {
     return <View />;
   }
