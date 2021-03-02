@@ -5,6 +5,7 @@ import {
   USER_POSTS_STATE_CHANGE,
   USER_FOLLOWING_STATE_CHANGE,
   USERS_DATA_STATE_CHANGE,
+  USERS_POSTS_STATE_CHANGE,
 } from '../constants/index';
 
 export function fetchUser() {
@@ -63,6 +64,9 @@ export function fetchUserFollowing() {
           type: USER_FOLLOWING_STATE_CHANGE,
           following,
         });
+        for (let i = 0; i < following.length; i++) {
+          dispatch(fetchUsersData(following[i]));
+        }
       });
   };
 }
@@ -87,7 +91,8 @@ export function fetchUsersData(uid) {
           } else {
             console.log('fetchUsersData');
           }
-        });
+        })
+        .catch(e => console.log(e.message));
     }
   };
 }
@@ -105,16 +110,21 @@ export function fetchUsersFollowingPosts(uid) {
         .get()
         .then(snapshot => {
           const uid = snapshot.query.EP.path.segments[1];
+
+          const user = getState().usersState.users.find(el => el.uid === uid);
+
           let posts = snapshot.docs.map(doc => {
             const data = doc.data();
             const id = doc.id;
-            return { id, ...data };
+            return { id, ...data, user };
           });
           dispatch({
-            type: USER_POSTS_STATE_CHANGE,
+            type: USERS_POSTS_STATE_CHANGE,
             posts,
+            uid,
           });
-        });
+        })
+        .catch(e => console.log(e.message));
     }
   );
 }
