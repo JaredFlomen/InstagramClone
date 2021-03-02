@@ -72,33 +72,30 @@ export function fetchUserFollowing() {
 }
 
 export function fetchUsersData(uid) {
-  return (
-    dispatch,
-    getState => {
-      const found = getState().usersState.users.some(el => el.uid === uid);
-      if (!found) {
-        firebase
-          .firestore()
-          .collection('users')
-          .doc(uid)
-          .get()
-          .then(snapshot => {
-            if (snapshot.exists) {
-              let user = snapshot.data();
-              user.uid = snapshot.id;
-              dispatch({
-                type: USERS_DATA_STATE_CHANGE,
-                user,
-              });
-              dispatch(fetchUsersFollowingPosts(user.uid));
-            } else {
-              console.log('fetchUsersData');
-            }
-          })
-          .catch(e => console.log('HERE 1', e.message));
-      }
+  return (dispatch, getState) => {
+    const found = getState().usersState.users.some(el => el.uid === uid);
+    if (!found) {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then(snapshot => {
+          if (snapshot.exists) {
+            let user = snapshot.data();
+            user.uid = snapshot.id;
+            dispatch({
+              type: USERS_DATA_STATE_CHANGE,
+              user,
+            });
+            dispatch(fetchUsersFollowingPosts(user.uid));
+          } else {
+            console.log('fetchUsersData');
+          }
+        })
+        .catch(e => console.log('HERE D', e.message));
     }
-  );
+  };
 }
 
 export function fetchUsersFollowingPosts(uid) {
@@ -126,7 +123,7 @@ export function fetchUsersFollowingPosts(uid) {
             uid,
           });
         })
-        .catch(e => console.log('HERE 2', e.message));
+        .catch(e => console.log('HERE E', e.message));
     }
   );
 }
