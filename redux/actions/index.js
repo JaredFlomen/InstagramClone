@@ -71,6 +71,7 @@ export function fetchUserFollowing() {
           type: USER_FOLLOWING_STATE_CHANGE,
           following,
         });
+        // following.forEach(element => dispatch(fetchUsersData(element, true)));
         for (let i = 0; i < following.length; i++) {
           dispatch(fetchUsersData(following[i]), true);
         }
@@ -99,7 +100,7 @@ export function fetchUsersData(uid, getPosts) {
             console.log('fetchUsersData');
           }
         })
-        .catch(e => console.log('HERE A', e.message));
+        .catch(e => console.log('fetchUsersData Error', e.message));
     }
     if (getPosts) {
       dispatch(fetchUsersFollowingPosts(uid));
@@ -132,7 +133,7 @@ export function fetchUsersFollowingPosts(uid) {
             uid,
           });
         })
-        .catch(e => console.log('HERE B', e.message));
+        .catch(e => console.log('fetchUsersFollowingPosts Error', e.message));
     }
   );
 }
