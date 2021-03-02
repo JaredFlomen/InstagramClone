@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, FlatList, StyleSheet, Button } from 'react-native';
 import firebase from 'firebase';
 require('firebase/firestore');
-
 import { connect } from 'react-redux';
 
 function Feed(props) {
