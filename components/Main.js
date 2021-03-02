@@ -9,6 +9,7 @@ import {
   fetchUser,
   fetchUserPosts,
   fetchUserFollowing,
+  clearData,
 } from '../redux/actions/index';
 
 import FeedScreen from './main/Feed';
@@ -23,6 +24,7 @@ const EmptyScreen = () => {
 
 export class Main extends Component {
   componentDidMount() {
+    this.props.clearData();
     this.props.fetchUser();
     this.props.fetchUserPosts();
     this.props.fetchUserFollowing();
@@ -95,7 +97,7 @@ const mapStateToProps = store => ({ currentUser: store.userState.currentUser });
 
 const mapDispatchProps = dispatch =>
   bindActionCreators(
-    { fetchUser, fetchUserPosts, fetchUserFollowing },
+    { fetchUser, fetchUserPosts, fetchUserFollowing, clearData },
     dispatch
   );
 
