@@ -93,7 +93,7 @@ export function fetchUsersData(uid) {
             console.log('fetchUsersData');
           }
         })
-        .catch(e => console.log('HERE D', e.message));
+        .catch(e => console.log('HERE A', e.message));
     }
   };
 }
@@ -123,7 +123,7 @@ export function fetchUsersFollowingPosts(uid) {
             uid,
           });
         })
-        .catch(e => console.log('HERE E', e.message));
+        .catch(e => console.log('HERE B', e.message));
     }
   );
 }
