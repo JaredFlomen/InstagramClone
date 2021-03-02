@@ -4,6 +4,7 @@ import {
   USER_STATE_CHANGE,
   USER_POSTS_STATE_CHANGE,
   USER_FOLLOWING_STATE_CHANGE,
+  USERS_DATA_STATE_CHANGE,
 } from '../constants/index';
 
 export function fetchUser() {
@@ -63,5 +64,31 @@ export function fetchUserFollowing() {
           following,
         });
       });
+  };
+}
+
+export function fetchUsersData(uid) {
+  return (dispatch, getState) => {
+    const found = getState().usersState.users.some(el => el.uid === uid);
+    if (!found) {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then(snapshot => {
+          if (snapshot.exists) {
+            let user = snapshot.data();
+            user.uid = snapshot.id;
+
+            dispatch({
+              type: USERS_DATA_STATE_CHANGE,
+              user,
+            });
+          } else {
+            console.log('fetchUsersData');
+          }
+        });
+    }
   };
 }
