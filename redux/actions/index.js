@@ -80,7 +80,6 @@ export function fetchUsersData(uid) {
           if (snapshot.exists) {
             let user = snapshot.data();
             user.uid = snapshot.id;
-
             dispatch({
               type: USERS_DATA_STATE_CHANGE,
               user,
@@ -91,4 +90,31 @@ export function fetchUsersData(uid) {
         });
     }
   };
+}
+
+export function fetchUsersFollowingPosts(uid) {
+  return (
+    dispatch,
+    getState => {
+      firebase
+        .firestore()
+        .collection('posts')
+        .doc(uid)
+        .collection('userPosts')
+        .orderBy('creation', 'asc')
+        .get()
+        .then(snapshot => {
+          const uid = snapshot.query.EP.path.segments[1];
+          let posts = snapshot.docs.map(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data };
+          });
+          dispatch({
+            type: USER_POSTS_STATE_CHANGE,
+            posts,
+          });
+        });
+    }
+  );
 }
