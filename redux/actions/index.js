@@ -88,7 +88,7 @@ export function fetchUsersData(uid) {
               type: USERS_DATA_STATE_CHANGE,
               user,
             });
-            dispatch(fetchUsersFollowingPosts(user.uid));
+            dispatch(fetchUsersFollowingPosts(uid));
           } else {
             console.log('fetchUsersData');
           }
