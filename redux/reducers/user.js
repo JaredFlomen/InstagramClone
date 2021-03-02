@@ -7,7 +7,7 @@ import {
 const initialState = {
   currentUser: null,
   posts: [],
-  foloowing: [],
+  following: [],
 };
 
 export const user = (state = initialState, action) => {

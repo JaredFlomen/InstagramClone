@@ -23,6 +23,7 @@ function Feed(props) {
       setPosts(posts);
     }
   }, [props.usersLoaded]);
+
   return (
     <View style={styles.container}>
       <View style={styles.containerPost}>

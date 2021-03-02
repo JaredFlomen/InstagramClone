@@ -72,30 +72,33 @@ export function fetchUserFollowing() {
 }
 
 export function fetchUsersData(uid) {
-  return (dispatch, getState) => {
-    const found = getState().usersState.users.some(el => el.uid === uid);
-    if (!found) {
-      firebase
-        .firestore()
-        .collection('users')
-        .doc(uid)
-        .get()
-        .then(snapshot => {
-          if (snapshot.exists) {
-            let user = snapshot.data();
-            user.uid = snapshot.id;
-            dispatch({
-              type: USERS_DATA_STATE_CHANGE,
-              user,
-            });
-            dispatch(fetchUsersFollowingPosts(user.id));
-          } else {
-            console.log('fetchUsersData');
-          }
-        })
-        .catch(e => console.log(e.message));
+  return (
+    dispatch,
+    getState => {
+      const found = getState().usersState.users.some(el => el.uid === uid);
+      if (!found) {
+        firebase
+          .firestore()
+          .collection('users')
+          .doc(uid)
+          .get()
+          .then(snapshot => {
+            if (snapshot.exists) {
+              let user = snapshot.data();
+              user.uid = snapshot.id;
+              dispatch({
+                type: USERS_DATA_STATE_CHANGE,
+                user,
+              });
+              dispatch(fetchUsersFollowingPosts(user.uid));
+            } else {
+              console.log('fetchUsersData');
+            }
+          })
+          .catch(e => console.log('HERE 1', e.message));
+      }
     }
-  };
+  );
 }
 
 export function fetchUsersFollowingPosts(uid) {
@@ -111,9 +114,7 @@ export function fetchUsersFollowingPosts(uid) {
         .get()
         .then(snapshot => {
           const uid = snapshot.query.EP.path.segments[1];
-
           const user = getState().usersState.users.find(el => el.uid === uid);
-
           let posts = snapshot.docs.map(doc => {
             const data = doc.data();
             const id = doc.id;
@@ -125,7 +126,7 @@ export function fetchUsersFollowingPosts(uid) {
             uid,
           });
         })
-        .catch(e => console.log(e.message));
+        .catch(e => console.log('HERE 2', e.message));
     }
   );
 }
