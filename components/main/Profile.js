@@ -64,11 +64,11 @@ function Profile(props) {
   const onUnfollow = () => {
     firebase
       .firestore()
-      .collection('Following')
+      .collection('following')
       .doc(firebase.auth().currentUser.uid)
       .collection('userFollowing')
       .doc(props.route.params.uid)
-      .delete({});
+      .delete();
   };
 
   if (!user) {
