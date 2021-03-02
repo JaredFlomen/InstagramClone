@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './redux/reducers';
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
+import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
 import AddScreen from './components/main/Add';
 import SaveScreen from './components/main/Save';
@@ -86,6 +87,7 @@ export class App extends Component {
               options={{ headerShown: false }}
             />
             <Stack.Screen name='Register' component={RegisterScreen} />
+            <Stack.Screen name='Login' component={LoginScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       );
